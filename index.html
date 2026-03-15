@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="html-root">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>TUNIBLESS – طريقك إلى ألمانيا</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+/* ═══════════════════════════════════
+   VARIABLES & RESET
+═══════════════════════════════════ */
+:root{
+  --blue-deep:  #071525;
+  --blue-dark:  #0d2148;
+  --blue-mid:   #1877f2;
+  --blue-light: #2d9cff;
+  --blue-soft:  #e8f4ff;
+  --blue-glass: rgba(24,119,242,0.10);
+  --off-white:  #f0f6ff;
+  --text-dark:  #0d1b2a;
+  --text-mid:   #3a5068;
+  --gold:       #f5a623;
+  --radius:     14px;
+  --radius-sm:  9px;
+  --shadow:     0 4px 24px rgba(13,33,72,0.10);
+  --shadow-blue:0 6px 32px rgba(24,119,242,0.18);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Cairo',sans-serif;
+  background:var(--off-white);
+  color:var(--text-dark);
+  overflow-x:hidden;
+  -webkit-text-size-adjust:100%;
+}
+img{max-width:100%;height:auto;display:block;}
+a{color:inherit;}
+
+/* ═══════════════════════════════════
+   LANG SWITCHER
+═══════════════════════════════════ */
+.lang-switcher{
+  position:fixed;top:.75rem;left:50%;
+  transform:translateX(-50%);
+  z-index:999;
+  display:flex;
+  background:rgba(255,255,255,0.95);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border-radius:50px;
+  padding:4px;
+  box-shadow:0 4px 24px rgba(13,33,72,0.15),0 0 0 1px rgba(24,119,242,0.12);
+  gap:3px;
+}
+.lang-btn{
+  padding:.5rem 1.2rem;
+  border-radius:50px;border:none;
+  font-family:'Cairo',sans-serif;
+  font-size:.84rem;font-weight:700;
+  cursor:pointer;
+  transition:all .3s;
+  background:transparent;color:var(--text-mid);
+  display:flex;align-items:center;gap:5px;
+  white-space:nowrap;
+  -webkit-appearance:none;
+}
+.lang-btn.active{
+  background:var(--blue-mid);color:white;
+  box-shadow:0 3px 12px rgba(24,119,242,.35);
+}
+.lang-btn:not(.active):hover{background:var(--blue-soft);color:var(--blue-mid);}
+
+/* ═══════════════════════════════════
+   SECTION TOGGLE
+═══════════════════════════════════ */
+.lang-section{display:none;}
+.lang-section.active{display:block;}
+
+/* ═══════════════════════════════════
+   HERO
+═══════════════════════════════════ */
+.page-hero{
+  background:linear-gradient(140deg,var(--blue-deep) 0%,#0b1e45 55%,#0f2d6a 100%);
+  padding:5.5rem 1.2rem 4rem;
+  text-align:center;
+  position:relative;overflow:hidden;
+}
+.hero-mesh{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 65% 55% at 15% 50%,rgba(24,119,242,.17),transparent 65%),
+    radial-gradient(ellipse 45% 40% at 85% 25%,rgba(45,156,255,.12),transparent 60%);
+}
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:36px 36px;
+  mask-image:radial-gradient(ellipse 80% 70% at 50% 50%,black,transparent);
+  -webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 50%,black,transparent);
+}
+.particles-wrap{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+.particle{position:absolute;border-radius:50%;animation:floatUp linear infinite;bottom:-20px;}
+@keyframes floatUp{
+  0%{transform:translateY(0) scale(1);opacity:0;}
+  8%{opacity:1;}85%{opacity:.3;}
+  100%{transform:translateY(-110vh) scale(.3);opacity:0;}
+}
+.hero-flags{
+  display:flex;align-items:center;justify-content:center;
+  gap:.65rem;margin-bottom:1.5rem;
+  position:relative;z-index:2;
+  animation:fadeDown .7s ease both;
+  flex-wrap:wrap;
+}
+.flag-pill{
+  display:flex;align-items:center;gap:5px;
+  background:rgba(255,255,255,.09);
+  border:1px solid rgba(255,255,255,.16);
+  padding:.28rem .85rem;border-radius:50px;
+  font-size:.78rem;color:rgba(255,255,255,.85);font-weight:600;
+}
+.arrow-anim{color:var(--blue-light);animation:arrowPulse 2s infinite;}
+@keyframes arrowPulse{0%,100%{transform:translateX(0);}50%{transform:translateX(4px);}}
+.hero-logo{
+  font-size:clamp(2.6rem,11vw,5.5rem);
+  font-weight:900;color:white;letter-spacing:2px;
+  position:relative;z-index:2;
+  animation:fadeDown .75s .1s ease both;
+  line-height:1.1;
+}
+.hero-logo span{color:var(--blue-light);position:relative;}
+.hero-logo span::after{
+  content:'';position:absolute;
+  bottom:4px;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--blue-light),transparent);
+  border-radius:2px;
+}
+.hero-tagline{
+  margin-top:.7rem;
+  color:rgba(255,255,255,.55);
+  font-size:.88rem;font-weight:300;letter-spacing:1.5px;
+  position:relative;z-index:2;
+  animation:fadeDown .75s .2s ease both;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  margin-top:1.4rem;
+  background:rgba(245,166,35,.13);
+  border:1px solid rgba(245,166,35,.32);
+  color:var(--gold);
+  padding:.38rem 1.1rem;border-radius:50px;
+  font-size:.75rem;font-weight:700;
+  position:relative;z-index:2;
+  animation:fadeDown .75s .35s ease both;
+  text-align:center;line-height:1.4;
+}
+
+/* ═══════════════════════════════════
+   PAGE BODY
+═══════════════════════════════════ */
+.page-body{
+  max-width:820px;margin:0 auto;
+  padding:2.5rem 1rem 4rem;
+}
+
+/* ═══════════════════════════════════
+   CHIPS & TITLES
+═══════════════════════════════════ */
+.chip{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--blue-glass);color:var(--blue-mid);
+  padding:.3rem .9rem;border-radius:50px;
+  font-size:.72rem;font-weight:700;letter-spacing:1.5px;
+  margin-bottom:.9rem;
+  border:1px solid rgba(24,119,242,.15);
+}
+.sec-title{
+  font-size:clamp(1.3rem,5vw,2rem);
+  font-weight:900;color:var(--blue-deep);
+  margin-bottom:.4rem;line-height:1.3;
+}
+.sec-title span{color:var(--blue-mid);}
+.sec-sub{
+  color:var(--text-mid);font-size:.88rem;
+  font-weight:400;margin-bottom:1.3rem;line-height:1.8;
+}
+.sec-line{
+  width:48px;height:3px;
+  background:linear-gradient(90deg,var(--blue-mid),transparent);
+  border-radius:2px;margin-bottom:1.6rem;
+}
+.divider{
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(24,119,242,.18),transparent);
+  margin:2.5rem 0;
+}
+
+/* ═══════════════════════════════════
+   VIDEO
+═══════════════════════════════════ */
+.video-wrap{
+  width:100%;aspect-ratio:16/9;
+  border-radius:var(--radius);overflow:hidden;
+  box-shadow:var(--shadow-blue);
+  border:2px solid rgba(24,119,242,.18);
+  background:var(--blue-deep);
+}
+.video-wrap iframe{width:100%;height:100%;border:none;display:block;}
+
+/* ═══════════════════════════════════
+   APP SECTION  — STACKED ON MOBILE
+═══════════════════════════════════ */
+.app-section{
+  background:linear-gradient(135deg,var(--blue-deep) 0%,#0d2a5c 100%);
+  border-radius:var(--radius);
+  padding:2rem 1.4rem;
+  display:flex;
+  flex-direction:column;
+  gap:1.6rem;
+  align-items:center;
+  box-shadow:var(--shadow-blue);
+  border:1px solid rgba(24,119,242,.2);
+  position:relative;overflow:hidden;
+  text-align:center;
+}
+.app-section::before{
+  content:'';position:absolute;
+  top:-50px;left:-50px;
+  width:180px;height:180px;
+  background:radial-gradient(circle,rgba(24,119,242,.18),transparent 70%);
+  border-radius:50%;
+}
+.app-text{position:relative;z-index:1;width:100%;}
+.app-chip{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(245,166,35,.14);
+  border:1px solid rgba(245,166,35,.3);
+  color:var(--gold);
+  padding:.26rem .85rem;border-radius:50px;
+  font-size:.7rem;font-weight:700;letter-spacing:1.5px;
+  margin-bottom:.9rem;
+}
+.app-title{
+  font-size:clamp(1.1rem,5vw,1.6rem);
+  font-weight:900;color:white;line-height:1.35;
+  margin-bottom:.8rem;
+}
+.app-title span{color:var(--blue-light);}
+.app-desc{
+  color:rgba(255,255,255,.6);
+  font-size:.86rem;line-height:1.85;
+  margin-bottom:1.3rem;
+  font-weight:300;
+}
+.app-features{
+  display:flex;flex-wrap:wrap;gap:.45rem;
+  margin-bottom:1.4rem;
+  justify-content:center;
+}
+.app-feat{
+  display:flex;align-items:center;gap:5px;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.12);
+  padding:.28rem .75rem;border-radius:50px;
+  font-size:.72rem;color:rgba(255,255,255,.8);font-weight:600;
+}
+.app-btn{
+  display:inline-flex;align-items:center;gap:.55rem;
+  background:var(--blue-mid);color:white;
+  padding:.8rem 1.8rem;border-radius:50px;
+  font-family:'Cairo',sans-serif;
+  font-size:.88rem;font-weight:700;
+  text-decoration:none;
+  box-shadow:0 4px 18px rgba(24,119,242,.4);
+  transition:all .3s;border:none;cursor:pointer;
+  /* make it touch-friendly */
+  min-height:48px;
+}
+.app-btn:hover,.app-btn:active{
+  background:var(--blue-light);
+  box-shadow:0 6px 24px rgba(24,119,242,.55);
+  transform:translateY(-2px);
+}
+.app-img-wrap{
+  position:relative;z-index:1;
+}
+.app-phone-frame{
+  position:relative;display:inline-block;
+}
+.app-phone-frame::before{
+  content:'';position:absolute;inset:-6px;
+  border-radius:22px;
+  background:linear-gradient(135deg,rgba(45,156,255,.35),rgba(24,119,242,.15));
+  z-index:0;
+  animation:phonePulse 3s ease-in-out infinite;
+}
+@keyframes phonePulse{
+  0%,100%{transform:scale(1);opacity:.7;}
+  50%{transform:scale(1.04);opacity:1;}
+}
+.app-img{
+  width:140px;
+  border-radius:16px;
+  box-shadow:0 14px 42px rgba(0,0,0,.4);
+  border:2px solid rgba(255,255,255,.15);
+  transition:transform .4s ease;
+  position:relative;z-index:1;
+}
+.app-section:hover .app-img{transform:translateY(-6px) rotate(1deg);}
+
+/* DESKTOP: side by side */
+@media(min-width:640px){
+  .app-section{
+    flex-direction:row;
+    text-align:right;
+    padding:2.5rem 2rem;
+    gap:2rem;
+  }
+  #section-de .app-section{text-align:left;}
+  .app-features{justify-content:flex-start;}
+  #section-de .app-features{justify-content:flex-start;}
+  .app-img{width:155px;}
+}
+
+/* ═══════════════════════════════════
+   TRACK CARDS
+═══════════════════════════════════ */
+.tracks-grid{display:grid;gap:1.2rem;margin-top:1.2rem;}
+.track-card{
+  background:white;border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  border:1.5px solid rgba(24,119,242,.08);
+  transition:box-shadow .4s,border-color .4s,transform .4s;
+}
+.track-card:hover{
+  box-shadow:var(--shadow-blue);
+  border-color:rgba(24,119,242,.28);
+}
+.track-header{
+  background:linear-gradient(135deg,var(--blue-deep),#1a3a72);
+  padding:1.2rem 1.4rem;
+  display:flex;align-items:center;gap:1rem;
+  position:relative;overflow:hidden;
+}
+.track-header::after{
+  content:'';position:absolute;right:-20px;top:-20px;
+  width:80px;height:80px;
+  background:rgba(45,156,255,.12);border-radius:50%;
+}
+.track-icon{
+  width:44px;height:44px;
+  background:var(--blue-mid);border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.3rem;flex-shrink:0;
+  box-shadow:0 4px 12px rgba(24,119,242,.4);
+}
+.track-num{font-size:.64rem;color:rgba(255,255,255,.4);letter-spacing:3px;font-weight:600;}
+.track-name{font-size:1rem;font-weight:900;color:white;line-height:1.3;}
+.track-body{padding:1.2rem 1.4rem;}
+.track-desc{color:var(--text-mid);font-size:.86rem;line-height:1.9;margin-bottom:1rem;}
+.track-img{
+  width:100%;border-radius:var(--radius-sm);
+  overflow:hidden;
+  /* natural ratio — no forced crop */
+  background:var(--blue-soft);
+}
+.track-img img{
+  width:100%;height:auto;
+  object-fit:cover;display:block;
+  transition:transform .5s ease;
+}
+.track-card:hover .track-img img{transform:scale(1.02);}
+.track-tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem;}
+.tag{
+  background:var(--blue-soft);color:var(--blue-mid);
+  padding:.26rem .8rem;border-radius:50px;
+  font-size:.7rem;font-weight:700;
+  border:1px solid rgba(24,119,242,.13);
+}
+
+/* ═══════════════════════════════════
+   FLYER RECTO / VERSO
+═══════════════════════════════════ */
+.flyer-rv-stack{display:flex;flex-direction:column;gap:2rem;margin-top:1.5rem;}
+.flyer-rv-card{
+  background:white;border-radius:var(--radius);
+  overflow:visible;
+  box-shadow:var(--shadow);
+  border:1.5px solid rgba(24,119,242,.1);
+  transition:transform .4s,box-shadow .4s,border-color .4s;
+  position:relative;
+}
+.flyer-rv-card:hover{
+  transform:translateY(-4px);
+  box-shadow:var(--shadow-blue);
+  border-color:rgba(24,119,242,.28);
+}
+.flyer-rv-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  position:absolute;top:-13px;right:16px;
+  padding:.28rem .9rem;border-radius:50px;
+  font-size:.7rem;font-weight:800;letter-spacing:1px;
+  z-index:2;box-shadow:0 3px 10px rgba(0,0,0,.12);
+}
+.recto-badge{background:linear-gradient(135deg,var(--blue-mid),var(--blue-light));color:white;}
+.verso-badge{background:linear-gradient(135deg,#0d2148,#1a3a6e);color:rgba(255,255,255,.92);}
+.flyer-rv-img{
+  width:100%;
+  border-radius:var(--radius);overflow:hidden;
+  background:var(--blue-soft);
+}
+.flyer-rv-img img{
+  width:100%;height:auto;
+  object-fit:contain;display:block;
+  transition:transform .5s;
+}
+.flyer-rv-card:hover .flyer-rv-img img{transform:scale(1.01);}
+
+/* ═══════════════════════════════════
+   CONTACT
+═══════════════════════════════════ */
+.contact-box{
+  background:linear-gradient(135deg,var(--blue-deep),#0d2a5c);
+  border-radius:var(--radius);
+  padding:2rem 1.4rem;
+  box-shadow:var(--shadow-blue);
+  position:relative;overflow:hidden;
+  border:1px solid rgba(24,119,242,.18);
+}
+.contact-box::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 60% at 80% 20%,rgba(24,119,242,.18),transparent);
+}
+.contact-title{
+  font-size:1.1rem;font-weight:900;color:white;
+  margin-bottom:.3rem;
+  position:relative;z-index:1;
+  display:flex;align-items:center;gap:.55rem;
+}
+.contact-sub{
+  color:rgba(255,255,255,.45);font-size:.8rem;
+  margin-bottom:1.5rem;position:relative;z-index:1;
+}
+.contact-grid{
+  display:grid;grid-template-columns:1fr;
+  gap:.8rem;position:relative;z-index:1;
+}
+@media(min-width:480px){
+  .contact-grid{grid-template-columns:1fr 1fr;}
+}
+.contact-item{
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.11);
+  border-radius:var(--radius-sm);
+  padding:.9rem 1rem;
+  display:flex;align-items:center;gap:.8rem;
+  text-decoration:none;
+  transition:background .3s,transform .3s;
+  cursor:pointer;
+  /* touch target */
+  min-height:56px;
+}
+.contact-item:hover,.contact-item:active{
+  background:rgba(255,255,255,.13);
+  transform:translateY(-2px);
+}
+.contact-ico{
+  width:38px;height:38px;border-radius:9px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.95rem;flex-shrink:0;
+}
+.ico-email{background:rgba(234,67,53,.22);color:#ea4335;}
+.ico-phone{background:rgba(52,211,153,.18);color:#34d399;}
+.ico-fb{background:rgba(24,119,242,.28);color:#60a5fa;}
+.c-label{font-size:.62rem;color:rgba(255,255,255,.38);letter-spacing:2px;font-weight:600;}
+.c-val{font-size:.82rem;color:white;font-weight:700;margin-top:2px;word-break:break-all;}
+
+/* ═══════════════════════════════════
+   FOOTER
+═══════════════════════════════════ */
+.page-footer{
+  background:linear-gradient(135deg,var(--blue-deep),#071d3a);
+  border-top:1px solid rgba(24,119,242,.15);
+  padding:2.5rem 1.2rem 1.8rem;
+  position:relative;overflow:hidden;
+}
+.page-footer::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 80% at 50% 100%,rgba(24,119,242,.08),transparent);
+}
+.footer-inner{
+  max-width:820px;margin:0 auto;
+  display:flex;flex-direction:column;align-items:center;
+  gap:1.2rem;position:relative;z-index:1;
+  text-align:center;
+}
+.footer-logo{font-size:1.5rem;font-weight:900;color:white;letter-spacing:3px;}
+.footer-logo span{color:var(--blue-light);}
+.footer-ev{font-size:.68rem;color:rgba(255,255,255,.35);letter-spacing:2px;font-weight:600;margin-top:-.7rem;}
+.footer-divider{width:55px;height:2px;background:linear-gradient(90deg,transparent,var(--blue-mid),transparent);border-radius:2px;}
+.footer-info{display:flex;flex-direction:column;align-items:center;gap:.5rem;}
+.footer-info-row{
+  display:flex;align-items:center;gap:.5rem;
+  color:rgba(255,255,255,.5);font-size:.8rem;
+  flex-wrap:wrap;justify-content:center;
+}
+.footer-info-row i{color:var(--blue-light);font-size:.75rem;width:13px;text-align:center;}
+.footer-info-row a{color:rgba(255,255,255,.5);text-decoration:none;transition:color .3s;}
+.footer-info-row a:hover{color:var(--blue-light);}
+.footer-fb{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:rgba(24,119,242,.15);
+  border:1px solid rgba(24,119,242,.25);
+  color:rgba(255,255,255,.75);
+  padding:.45rem 1.1rem;border-radius:50px;
+  font-size:.78rem;font-weight:600;
+  text-decoration:none;
+  transition:all .3s;
+  text-align:center;
+  min-height:44px;
+}
+.footer-fb:hover,.footer-fb:active{background:rgba(24,119,242,.3);color:white;}
+.footer-copy{
+  color:rgba(255,255,255,.18);font-size:.7rem;
+  letter-spacing:1px;padding-top:.5rem;
+  border-top:1px solid rgba(255,255,255,.06);
+  width:100%;
+}
+
+/* ═══════════════════════════════════
+   REVEAL ANIMATION
+═══════════════════════════════════ */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-d1{transition-delay:.08s;}
+.reveal-d2{transition-delay:.16s;}
+.reveal-d3{transition-delay:.24s;}
+
+/* ═══════════════════════════════════
+   KEYFRAMES
+═══════════════════════════════════ */
+@keyframes fadeDown{
+  from{opacity:0;transform:translateY(-18px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+/* ═══════════════════════════════════
+   DE FONT
+═══════════════════════════════════ */
+#section-de{font-family:'Plus Jakarta Sans',sans-serif;}
+#section-de .sec-title,#section-de .track-name,
+#section-de .app-title,#section-de .contact-title,
+#section-de .footer-logo,#section-de .hero-logo{font-family:'Plus Jakarta Sans',sans-serif;}
+
+/* ═══════════════════════════════════
+   SMALL PHONE TWEAKS  (≤380px)
+═══════════════════════════════════ */
+@media(max-width:380px){
+  .hero-logo{letter-spacing:0;}
+  .lang-btn{padding:.45rem .9rem;font-size:.78rem;}
+  .app-img{width:110px;}
+  .footer-fb{font-size:.72rem;}
+}
+
+/* IFRAME FILL FIX */
+html,body{
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  overflow-x:hidden!important;
+}
+</style>
+</head>
+<body>
+
+<!-- ── LANG SWITCHER ── -->
+<div class="lang-switcher">
+  <button class="lang-btn active" onclick="switchLang('ar')" id="btn-ar">🇹🇳 العربية</button>
+  <button class="lang-btn"        onclick="switchLang('de')" id="btn-de">🇩🇪 Deutsch</button>
+</div>
+
+
+<!-- ╔═══════════════════════════╗
+     ║      ARABIC SECTION      ║
+     ╚═══════════════════════════╝ -->
+<div id="section-ar" class="lang-section active">
+
+  <div class="page-hero">
+    <div class="hero-mesh"></div><div class="hero-grid"></div>
+    <div class="particles-wrap" id="particles-ar"></div>
+    <div class="hero-flags">
+      <div class="flag-pill">🇹🇳 تونس</div>
+      <i class="fas fa-arrow-left arrow-anim"></i>
+      <div class="flag-pill">🇩🇪 ألمانيا</div>
+    </div>
+    <div class="hero-logo">TUNI<span>BLESS</span></div>
+    <div class="hero-tagline">جمعيتك للتكامل والفرص</div>
+    <div class="hero-badge"><i class="fas fa-star"></i> طريقك المضمون نحو مستقبل أفضل في ألمانيا</div>
+  </div>
+
+  <div class="page-body">
+
+    <!-- VIDEO -->
+    <div class="reveal" style="margin-bottom:2.5rem">
+      <div class="chip"><i class="fas fa-play-circle"></i> فيديو تعريفي</div>
+      <h2 class="sec-title">تعرّف على <span>TUNIBLESS</span></h2>
+      <p class="sec-sub">شاهد كيف نساعدك في بناء مستقبلك وتحقيق حلمك في ألمانيا</p>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/uwzeiJ5zbXY" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- APP -->
+    <div class="reveal" style="margin-bottom:2.5rem">
+      <div class="chip"><i class="fas fa-robot"></i> تطبيق ذكي</div>
+      <h2 class="sec-title">اكتشف <span>مسارك المهني</span> في ألمانيا</h2>
+      <div class="sec-line"></div>
+      <div class="app-section">
+        <div class="app-text">
+          <div class="app-chip"><i class="fas fa-sparkles"></i> مدعوم بالذكاء الاصطناعي</div>
+          <h3 class="app-title">تطبيق <span>TuniBless</span> الذكي</h3>
+          <p class="app-desc">تحليل ذكي مخصص لك بالكامل — يقرأ مهاراتك ويطابقها مع سوق العمل الألماني ليمنحك المسار الأنسب لك.</p>
+          <div class="app-features">
+            <span class="app-feat"><i class="fas fa-brain"></i> تحليل المهارات</span>
+            <span class="app-feat"><i class="fas fa-briefcase"></i> سوق العمل</span>
+            <span class="app-feat"><i class="fas fa-route"></i> مسار مخصص</span>
+          </div>
+          <a href="https://tunibless-talent-bridge.web.app/" target="_blank" class="app-btn">
+            <i class="fas fa-rocket"></i> ابدأ التحليل الآن
+          </a>
+        </div>
+        <div class="app-img-wrap">
+          <div class="app-phone-frame">
+            <img class="app-img" src="https://i.imgur.com/aDNrXMf.jpeg" alt="Talent Bridge AI">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- TRACKS -->
+    <div>
+      <div class="chip reveal"><i class="fas fa-route"></i> مساراتنا</div>
+      <h2 class="sec-title reveal">اختر <span>مسارك</span> نحو ألمانيا</h2>
+      <p class="sec-sub reveal">مسارات متخصصة مصممة خصيصاً للتونسيين الراغبين في الهجرة والعمل</p>
+      <div class="tracks-grid">
+
+        <div class="track-card reveal reveal-d1">
+          <div class="track-header">
+            <div class="track-icon">🚗</div>
+            <div>
+              <div class="track-num">المسار الأول</div>
+              <div class="track-name">مسار السائق المحترف</div>
+            </div>
+          </div>
+          <div class="track-body">
+            <p class="track-desc">برنامج متكامل يمنحك كل ما تحتاجه للعمل كسائق محترف في ألمانيا — من رخصة القيادة الأوروبية إلى عقد العمل والاندماج الكامل.</p>
+            <div class="track-img">
+              <img src="https://i.imgur.com/bsMgAKg.jpeg" alt="مسار السائق المحترف" loading="lazy">
+            </div>
+            <div class="track-tags">
+              <span class="tag">🚗 رخصة أوروبية</span>
+              <span class="tag">📄 عقد عمل</span>
+              <span class="tag">🏠 سكن</span>
+              <span class="tag">🌍 تأشيرة</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="track-card reveal reveal-d2">
+          <div class="track-header">
+            <div class="track-icon">🔧</div>
+            <div>
+              <div class="track-num">المسار الثاني</div>
+              <div class="track-name">مسار العامل الماهر</div>
+            </div>
+          </div>
+          <div class="track-body">
+            <p class="track-desc">مسار خاص بأصحاب المهارات التقنية والحرفيين — احصل على اعتراف بشهادتك ومؤهلك واندمج في سوق العمل الألماني بثقة.</p>
+            <div class="track-img">
+              <img src="https://i.imgur.com/bGMj48O.jpeg" alt="مسار العامل الماهر" loading="lazy">
+            </div>
+            <div class="track-tags">
+              <span class="tag">🔧 اعتراف بالمهارات</span>
+              <span class="tag">🎓 تدريب مهني</span>
+              <span class="tag">💼 توظيف</span>
+              <span class="tag">📚 لغة ألمانية</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- FLYER -->
+    <div class="reveal">
+      <div class="chip"><i class="fas fa-layer-group"></i> فلاير الاندماج</div>
+      <h2 class="sec-title">فلاير <span>الاندماج</span></h2>
+      <p class="sec-sub">الوجه الأول والوجه الثاني — بتنسيق أفقي احترافي</p>
+      <div class="flyer-rv-stack">
+        <div class="flyer-rv-card reveal reveal-d1">
+          <div class="flyer-rv-badge recto-badge"><i class="fas fa-file-alt"></i> الوجه الأول — Recto</div>
+          <div class="flyer-rv-img"><img src="https://i.imgur.com/7Yof2R1.jpeg" alt="Recto" loading="lazy"></div>
+        </div>
+        <div class="flyer-rv-card reveal reveal-d2">
+          <div class="flyer-rv-badge verso-badge"><i class="fas fa-file-alt"></i> الوجه الثاني — Verso</div>
+          <div class="flyer-rv-img"><img src="https://i.imgur.com/VoDNCLh.jpeg" alt="Verso" loading="lazy"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- CONTACT -->
+    <div class="contact-box reveal">
+      <div class="contact-title"><i class="fas fa-hands-helping"></i> تواصل مع الجمعية</div>
+      <div class="contact-sub">نحن هنا لمساعدتك في كل خطوة من رحلتك</div>
+      <div class="contact-grid">
+        <a class="contact-item" href="mailto:tunibless@gmail.com">
+          <div class="contact-ico ico-email"><i class="fas fa-envelope"></i></div>
+          <div><div class="c-label">البريد الإلكتروني</div><div class="c-val">tunibless@gmail.com</div></div>
+        </a>
+        <a class="contact-item" href="tel:00496301719047">
+          <div class="contact-ico ico-phone"><i class="fas fa-phone"></i></div>
+          <div><div class="c-label">الهاتف</div><div class="c-val">0049 6301 71 90 475</div></div>
+        </a>
+        <a class="contact-item" href="https://www.facebook.com/people/TuniBless-eV/61567185301630/" target="_blank" style="grid-column:1/-1">
+          <div class="contact-ico ico-fb"><i class="fab fa-facebook-f"></i></div>
+          <div><div class="c-label">فيسبوك</div><div class="c-val">TuniBless e.V. | Kaiserslautern</div></div>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="page-footer">
+    <div class="footer-inner">
+      <div class="footer-logo">TUNI<span>BLESS</span></div>
+      <div class="footer-ev">e.V.</div>
+      <div class="footer-divider"></div>
+      <div class="footer-info">
+        <div class="footer-info-row"><i class="fas fa-map-marker-alt"></i><span>Husarenäcker 4, 67659 Kaiserslautern</span></div>
+        <div class="footer-info-row"><i class="fas fa-envelope"></i><a href="mailto:tunibless@gmail.com">tunibless@gmail.com</a></div>
+        <div class="footer-info-row"><i class="fas fa-phone"></i><a href="tel:00496301719047">0049 6301 71 90 475</a></div>
+      </div>
+      <a class="footer-fb" href="https://www.facebook.com/people/TuniBless-eV/61567185301630/" target="_blank">
+        <i class="fab fa-facebook-f"></i> TuniBless e.V. | Kaiserslautern | Facebook
+      </a>
+      <div class="footer-copy">© 2026 TuniBless e.V. — جميع الحقوق محفوظة</div>
+    </div>
+  </footer>
+</div>
+
+
+<!-- ╔═══════════════════════════╗
+     ║      GERMAN SECTION      ║
+     ╚═══════════════════════════╝ -->
+<div id="section-de" class="lang-section" dir="ltr">
+
+  <div class="page-hero">
+    <div class="hero-mesh"></div><div class="hero-grid"></div>
+    <div class="particles-wrap" id="particles-de"></div>
+    <div class="hero-flags">
+      <div class="flag-pill">🇹🇳 Tunesien</div>
+      <i class="fas fa-arrow-right arrow-anim"></i>
+      <div class="flag-pill">🇩🇪 Deutschland</div>
+    </div>
+    <div class="hero-logo">TUNI<span>BLESS</span></div>
+    <div class="hero-tagline">Dein Verein für Integration & Chancen</div>
+    <div class="hero-badge"><i class="fas fa-star"></i> Dein sicherer Weg in eine bessere Zukunft in Deutschland</div>
+  </div>
+
+  <div class="page-body">
+
+    <!-- VIDEO DE -->
+    <div class="reveal" style="margin-bottom:2.5rem">
+      <div class="chip"><i class="fas fa-play-circle"></i> Einführungsvideo</div>
+      <h2 class="sec-title">Lerne <span>TUNIBLESS</span> kennen</h2>
+      <p class="sec-sub">Sieh, wie wir dir helfen, deine Zukunft in Deutschland aufzubauen</p>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube.com/embed/uwzeiJ5zbXY" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- APP DE -->
+    <div class="reveal" style="margin-bottom:2.5rem">
+      <div class="chip"><i class="fas fa-robot"></i> Intelligente App</div>
+      <h2 class="sec-title">Entdecke deinen <span>Karriereweg</span> in Deutschland</h2>
+      <div class="sec-line"></div>
+      <div class="app-section">
+        <div class="app-text">
+          <div class="app-chip"><i class="fas fa-sparkles"></i> KI-gestützt</div>
+          <h3 class="app-title">Die <span>TuniBless</span> KI-App</h3>
+          <p class="app-desc">Vollständig personalisierte KI-Analyse — liest deine Fähigkeiten und gleicht sie mit dem deutschen Arbeitsmarkt ab, um den passenden Weg für dich zu finden.</p>
+          <div class="app-features">
+            <span class="app-feat"><i class="fas fa-brain"></i> Kompetenzanalyse</span>
+            <span class="app-feat"><i class="fas fa-briefcase"></i> Arbeitsmarkt</span>
+            <span class="app-feat"><i class="fas fa-route"></i> Individueller Pfad</span>
+          </div>
+          <a href="https://tunibless-talent-bridge.web.app/" target="_blank" class="app-btn">
+            <i class="fas fa-rocket"></i> Jetzt Analyse starten
+          </a>
+        </div>
+        <div class="app-img-wrap">
+          <div class="app-phone-frame">
+            <img class="app-img" src="https://i.imgur.com/aDNrXMf.jpeg" alt="Talent Bridge AI">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- TRACKS DE -->
+    <div>
+      <div class="chip reveal"><i class="fas fa-route"></i> Unsere Programme</div>
+      <h2 class="sec-title reveal">Wähle deinen <span>Weg</span> nach Deutschland</h2>
+      <p class="sec-sub reveal">Spezialisierte Programme für Tunesier, die in Deutschland arbeiten möchten</p>
+      <div class="tracks-grid">
+
+        <div class="track-card reveal reveal-d1">
+          <div class="track-header">
+            <div class="track-icon">🚗</div>
+            <div>
+              <div class="track-num">PFAD EINS</div>
+              <div class="track-name">Profi-Fahrer Programm</div>
+            </div>
+          </div>
+          <div class="track-body">
+            <p class="track-desc">Ein vollständiges Programm für professionelle Fahrer in Deutschland — europäischer Führerschein, Arbeitsvertrag und vollständige Integration.</p>
+            <div class="track-img">
+              <img src="https://i.imgur.com/bsMgAKg.jpeg" alt="Fahrerprogramm" loading="lazy">
+            </div>
+            <div class="track-tags">
+              <span class="tag">🚗 EU-Führerschein</span>
+              <span class="tag">📄 Arbeitsvertrag</span>
+              <span class="tag">🏠 Unterkunft</span>
+              <span class="tag">🌍 Visum</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="track-card reveal reveal-d2">
+          <div class="track-header">
+            <div class="track-icon">🔧</div>
+            <div>
+              <div class="track-num">PFAD ZWEI</div>
+              <div class="track-name">Fachkräfte-Programm</div>
+            </div>
+          </div>
+          <div class="track-body">
+            <p class="track-desc">Speziell für Facharbeiter und Handwerker — lass deine Qualifikationen anerkennen und tritt selbstbewusst in den deutschen Arbeitsmarkt ein.</p>
+            <div class="track-img">
+              <img src="https://i.imgur.com/Mokz7oB.jpeg" alt="Fachkräfte" loading="lazy">
+            </div>
+            <div class="track-tags">
+              <span class="tag">🔧 Anerkennung</span>
+              <span class="tag">🎓 Ausbildung</span>
+              <span class="tag">💼 Jobvermittlung</span>
+              <span class="tag">📚 Deutschkurs</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- FLYER DE -->
+    <div class="reveal">
+      <div class="chip"><i class="fas fa-layer-group"></i> Integrationsflyer</div>
+      <h2 class="sec-title">Flyer <span>Integration</span></h2>
+      <p class="sec-sub">Vorderseite und Rückseite — im professionellen Querformat</p>
+      <div class="flyer-rv-stack">
+        <div class="flyer-rv-card reveal reveal-d1">
+          <div class="flyer-rv-badge recto-badge"><i class="fas fa-file-alt"></i> Vorderseite — Recto</div>
+          <div class="flyer-rv-img"><img src="https://i.imgur.com/9nvRsVD.jpeg" alt="Recto DE" loading="lazy"></div>
+        </div>
+        <div class="flyer-rv-card reveal reveal-d2">
+          <div class="flyer-rv-badge verso-badge"><i class="fas fa-file-alt"></i> Rückseite — Verso</div>
+          <div class="flyer-rv-img"><img src="https://i.imgur.com/HANsL9Y.jpeg" alt="Verso DE" loading="lazy"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- CONTACT DE -->
+    <div class="contact-box reveal">
+      <div class="contact-title"><i class="fas fa-hands-helping"></i> Kontakt zum Verein</div>
+      <div class="contact-sub">Wir sind bei jedem Schritt deiner Reise für dich da</div>
+      <div class="contact-grid">
+        <a class="contact-item" href="mailto:tunibless@gmail.com">
+          <div class="contact-ico ico-email"><i class="fas fa-envelope"></i></div>
+          <div><div class="c-label">E-MAIL</div><div class="c-val">tunibless@gmail.com</div></div>
+        </a>
+        <a class="contact-item" href="tel:00496301719047">
+          <div class="contact-ico ico-phone"><i class="fas fa-phone"></i></div>
+          <div><div class="c-label">TELEFON</div><div class="c-val">0049 6301 71 90 475</div></div>
+        </a>
+        <a class="contact-item" href="https://www.facebook.com/people/TuniBless-eV/61567185301630/" target="_blank" style="grid-column:1/-1">
+          <div class="contact-ico ico-fb"><i class="fab fa-facebook-f"></i></div>
+          <div><div class="c-label">FACEBOOK</div><div class="c-val">TuniBless e.V. | Kaiserslautern</div></div>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="page-footer">
+    <div class="footer-inner">
+      <div class="footer-logo">TUNI<span>BLESS</span></div>
+      <div class="footer-ev">e.V.</div>
+      <div class="footer-divider"></div>
+      <div class="footer-info">
+        <div class="footer-info-row"><i class="fas fa-map-marker-alt"></i><span>Husarenäcker 4, 67659 Kaiserslautern</span></div>
+        <div class="footer-info-row"><i class="fas fa-envelope"></i><a href="mailto:tunibless@gmail.com">tunibless@gmail.com</a></div>
+        <div class="footer-info-row"><i class="fas fa-phone"></i><a href="tel:00496301719047">0049 6301 71 90 475</a></div>
+      </div>
+      <a class="footer-fb" href="https://www.facebook.com/people/TuniBless-eV/61567185301630/" target="_blank">
+        <i class="fab fa-facebook-f"></i> TuniBless e.V. | Kaiserslautern | Facebook
+      </a>
+      <div class="footer-copy">© 2026 TuniBless e.V. — Alle Rechte vorbehalten</div>
+    </div>
+  </footer>
+</div>
+
+
+<script>
+/* ══════════════════════════════════════════════
+   GOOGLE SITES RESPONSIVE FIX
+   The core problem: Google Sites embeds the page
+   in an iframe with a fixed desktop width (~980px),
+   then CSS-scales it down on mobile → text/buttons
+   look tiny. Fix: detect the scale and counter it
+   by setting the viewport meta dynamically.
+══════════════════════════════════════════════ */
+(function fixViewport(){
+  var meta = document.querySelector('meta[name="viewport"]');
+  function apply(){
+    // window.innerWidth inside the iframe = iframe's CSS width (e.g. 980)
+    // window.screen.width = actual phone screen (e.g. 390)
+    var iframeW = document.documentElement.scrollWidth;
+    var screenW = Math.min(window.screen.width, window.screen.height); // portrait
+    if(screenW < 600 && iframeW > screenW + 20){
+      // We're on mobile inside a wide iframe — scale to fit
+      var scale = (screenW / iframeW).toFixed(4);
+      meta.content = 'width=' + iframeW + ',initial-scale=' + scale + ',maximum-scale=5,user-scalable=yes';
+    } else {
+      meta.content = 'width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes';
+    }
+  }
+  apply();
+  window.addEventListener('resize', apply);
+})();
+
+/* ── PARTICLES ── */
+function buildParticles(id){
+  var w=document.getElementById(id);
+  if(!w||w.dataset.built)return;
+  w.dataset.built='1';
+  for(var i=0;i<20;i++){
+    var p=document.createElement('span');
+    var s=Math.random()*4+2;
+    p.className='particle';
+    p.style.cssText='left:'+Math.random()*100+'%;width:'+s+'px;height:'+s+'px;'+
+      'background:rgba('+(Math.random()>.5?'45,156,255':'24,119,242')+','+(Math.random()*.2+.04)+');'+
+      'animation-duration:'+(Math.random()*12+9)+'s;animation-delay:'+(Math.random()*10)+'s;';
+    w.appendChild(p);
+  }
+}
+
+/* ── LANG SWITCH ── */
+function switchLang(lang){
+  var ar=document.getElementById('section-ar');
+  var de=document.getElementById('section-de');
+  var from=lang==='ar'?de:ar, to=lang==='ar'?ar:de;
+  from.style.cssText='display:block;opacity:1;transition:opacity .26s ease,transform .26s ease;';
+  requestAnimationFrame(function(){from.style.opacity='0';from.style.transform='translateY(12px)';});
+  setTimeout(function(){
+    from.classList.remove('active');from.style.cssText='';
+    to.classList.add('active');
+    to.style.cssText='opacity:0;transform:translateY(12px);transition:opacity .35s ease,transform .35s ease;';
+    requestAnimationFrame(function(){requestAnimationFrame(function(){
+      to.style.opacity='1';to.style.transform='translateY(0)';
+    });});
+    setTimeout(function(){to.style.cssText='';},400);
+    if(lang==='de')buildParticles('particles-de');
+    document.documentElement.setAttribute('dir',lang==='ar'?'rtl':'ltr');
+    document.documentElement.setAttribute('lang',lang);
+    window.scrollTo({top:0,behavior:'smooth'});
+    setTimeout(initReveal,460);
+    setTimeout(notifyHeight,600);
+  },280);
+  document.getElementById('btn-ar').classList.toggle('active',lang==='ar');
+  document.getElementById('btn-de').classList.toggle('active',lang==='de');
+}
+
+/* ── SCROLL REVEAL ── */
+var ro=null;
+function initReveal(){
+  if(ro)ro.disconnect();
+  var els=document.querySelectorAll('.lang-section.active .reveal');
+  els.forEach(function(e){e.classList.remove('visible');});
+  ro=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var d=e.target.classList.contains('reveal-d1')?90:e.target.classList.contains('reveal-d2')?180:0;
+        setTimeout(function(){e.target.classList.add('visible');},d);
+      }
+    });
+  },{threshold:0.06,rootMargin:'0px 0px -20px 0px'});
+  els.forEach(function(e){ro.observe(e);});
+}
+
+/* ── TILT (desktop only) ── */
+function initTilt(){
+  if('ontouchstart' in window)return;
+  document.querySelectorAll('.track-card,.flyer-rv-card,.app-section').forEach(function(card){
+    card.addEventListener('mousemove',function(e){
+      var r=card.getBoundingClientRect();
+      var dx=(e.clientX-r.left-r.width/2)/(r.width/2);
+      var dy=(e.clientY-r.top-r.height/2)/(r.height/2);
+      card.style.transform='translateY(-4px) rotateX('+(-dy*3)+'deg) rotateY('+(dx*3)+'deg)';
+      card.style.transition='transform .1s ease';
+    });
+    card.addEventListener('mouseleave',function(){
+      card.style.transform='';card.style.transition='transform .5s ease';
+    });
+  });
+}
+
+/* ── CURSOR GLOW (desktop only) ── */
+function initCursor(){
+  if('ontouchstart' in window)return;
+  var g=document.createElement('div');
+  g.style.cssText='position:fixed;width:20px;height:20px;'+
+    'background:radial-gradient(circle,rgba(24,119,242,.28),transparent);'+
+    'border-radius:50%;pointer-events:none;z-index:9999;'+
+    'transform:translate(-50%,-50%);transition:left .1s ease,top .1s ease;';
+  document.body.appendChild(g);
+  document.addEventListener('mousemove',function(e){g.style.left=e.clientX+'px';g.style.top=e.clientY+'px';});
+}
+
+/* ── NOTIFY GOOGLE SITES OF HEIGHT ── */
+function notifyHeight(){
+  var h=Math.max(
+    document.body.scrollHeight,
+    document.body.offsetHeight,
+    document.documentElement.scrollHeight
+  );
+  window.parent.postMessage({type:'setHeight',height:h},'*');
+  // Also try the Google Sites specific method
+  try{ window.parent.postMessage(JSON.stringify({height:h}),'*'); }catch(e){}
+}
+
+/* ── INIT ── */
+window.addEventListener('load',function(){
+  buildParticles('particles-ar');
+  initReveal();
+  initTilt();
+  initCursor();
+  notifyHeight();
+  setTimeout(notifyHeight,800);
+  setTimeout(notifyHeight,2000);
+  setTimeout(notifyHeight,4000);
+  // Keep notifying as images load
+  document.querySelectorAll('img').forEach(function(img){
+    img.addEventListener('load',notifyHeight);
+  });
+});
+window.addEventListener('resize',function(){
+  clearTimeout(window._rto);
+  window._rto=setTimeout(function(){notifyHeight();},200);
+});
+</script>
+</body>
+</html>
